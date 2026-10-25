@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Create Account | FarmIQ{% endblock %}
+{% block content %}
+<section class="auth-panel panel">
+  <p class="eyebrow">FARMIQ ACCOUNT</p>
+  <h1>Create account</h1>
+  <p class="muted">Your farm profile, soil reports and scan history are private to your account.</p>
+  {% if first_account %}<div class="notice compact-notice"><strong>First account for this local database.</strong> Existing farm records will be assigned to this account. Confirm below to continue.</div>{% endif %}
+  <form method="post" action="{{ url_for('register') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="field-group"><label for="full_name">Full name</label><input id="full_name" name="full_name" type="text" autocomplete="name" minlength="2" maxlength="100" value="{{ form_data.full_name }}" required autofocus></div>
+    <div class="field-group"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" value="{{ form_data.email }}" required></div>
+    <div class="field-group"><label for="password">Password</label><div class="password-control"><input id="password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="256" required><button type="button" class="password-toggle" data-password-toggle="password" aria-controls="password" aria-pressed="false">Show</button></div><p class="field-help">Use at least 12 characters.</p></div>
+    <div class="field-group"><label for="confirm_password">Confirm password</label><div class="password-control"><input id="confirm_password" name="confirm_password" type="password" autocomplete="new-password" minlength="12" maxlength="256" required><button type="button" class="password-toggle" data-password-toggle="confirm_password" aria-controls="confirm_password" aria-pressed="false">Show</button></div></div>
+    {% if first_account %}<label class="check-row"><input type="checkbox" name="legacy_data_consent" value="yes" required><span>I confirm this account should own existing local FarmIQ farm records.</span></label>{% endif %}
+    <button class="button auth-submit" type="submit">Create account</button>
+  </form>
+  <p class="auth-switch">Already have an account? <a href="{{ url_for('login') }}">Sign in</a></p>
+</section>
+{% endblock %}

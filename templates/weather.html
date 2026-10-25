@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}Weather | FarmIQ{% endblock %}
+{% block content %}
+<header class="page-heading">
+  <p class="eyebrow">WEATHER AND WATER PLANNING</p>
+  <h1>{{ t.weather_forecast }}</h1>
+  <p>Fetch current conditions and the provider's forecast intervals after entering decimal coordinates. AgroMonitoring receives the coordinates only when you submit this form. Forecast readings are shown at the timestamps returned by the provider; FarmIQ does not infer daily values or rain probabilities.</p>
+</header>
+
+<form id="weather-form" method="post" class="panel mb-panel" data-weather-form>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="form-grid weather-form">
+    <div>
+      <label for="latitude">{{ t.latitude }}</label>
+      <input id="latitude" name="latitude" type="number" step="any" min="-90" max="90" placeholder="e.g. 13.007696" required value="{{ latitude if latitude is not none else '' }}">
+    </div>
+    <div>
+      <label for="longitude">{{ t.longitude }}</label>
+      <input id="longitude" name="longitude" type="number" step="any" min="-180" max="180" placeholder="e.g. 79.995269" required value="{{ longitude if longitude is not none else '' }}">
+    </div>
+    <div class="button-row">
+      <button class="button button-secondary" type="button" data-geolocate>Use My Location</button>
+      <button class="button" type="submit" data-weather-submit>Fetch forecast</button>
+    </div>
+  </div>
+  <p class="field-help" data-location-status aria-live="polite">{% if profile and profile.latitude is not none %}Saved farm coordinates are prefilled. Press Fetch forecast to send them to AgroMonitoring.{% else %}Use My Location or enter decimal coordinates with a period, such as 13.007696 and 79.995269.{% endif %}</p>
+</form>
+
+{% if forecast %}
+<section class="panel mb-panel" aria-labelledby="current-weather-title">
+  <div class="section-heading">
+    <div><p class="eyebrow">CURRENT CONDITIONS</p><h2 id="current-weather-title">Current weather{% if forecast.current.time %} · {{ forecast.current.time }}{% endif %}</h2></div>
+  </div>
+  <div class="weather-condition">
+    {% if forecast.current.icon_url %}<img class="weather-icon" src="{{ forecast.current.icon_url }}" alt="">{% endif %}
+    <strong>{{ forecast.current.description }}</strong>
+  </div>
+  <div class="metric-row">
+    <article class="metric"><span>Temperature</span><strong>{{ forecast.current.temperature_c }}&deg;C</strong></article>
+    <article class="metric"><span>Humidity</span><strong>{% if forecast.current.humidity is not none %}{{ forecast.current.humidity }}%{% else %}&mdash;{% endif %}</strong></article>
+    <article class="metric"><span>Wind speed</span><strong>{% if forecast.current.wind_speed is not none %}{{ forecast.current.wind_speed }} m/s{% else %}&mdash;{% endif %}</strong></article>
+    <article class="metric"><span>Cloud cover</span><strong>{% if forecast.current.cloud_cover is not none %}{{ forecast.current.cloud_cover }}%{% else %}&mdash;{% endif %}</strong></article>
+    {% if forecast.current.rainfall_mm is not none %}<article class="metric"><span>Rainfall ({{ forecast.current.rainfall_period }})</span><strong>{{ forecast.current.rainfall_mm }} mm</strong></article>{% endif %}
+  </div>
+  <p class="source-line">Source: <a href="{{ forecast.source_url }}" target="_blank" rel="noopener">AgroMonitoring current weather</a> · fetched {{ forecast.fetched_at }} UTC.</p>
+</section>
+
+<section class="panel mb-panel" aria-labelledby="forecast-title">
+  <div class="section-heading"><div><p class="eyebrow">PROVIDER FORECAST</p><h2 id="forecast-title">Forecast readings</h2></div></div>
+  <p class="small muted">Timestamps are UTC. Each row is one entry returned by AgroMonitoring; temperature, humidity, wind, cloud cover, and rainfall are displayed only when present in that entry.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Time (UTC)</th><th>Conditions</th><th>Temperature</th><th>Humidity</th><th>Wind</th><th>Cloud cover</th><th>Rainfall</th></tr></thead>
+      <tbody>
+      {% for period in forecast.periods %}
+        <tr>
+          <td>{{ period.time }}</td>
+          <td>{% if period.icon_url %}<img class="weather-icon weather-icon-small" src="{{ period.icon_url }}" alt="">{% endif %} {{ period.description or '&mdash;'|safe }}</td>
+          <td>{{ period.temperature_c }}&deg;C</td>
+          <td>{% if period.humidity is not none %}{{ period.humidity }}%{% else %}&mdash;{% endif %}</td>
+          <td>{% if period.wind_speed is not none %}{{ period.wind_speed }} m/s{% else %}&mdash;{% endif %}</td>
+          <td>{% if period.cloud_cover is not none %}{{ period.cloud_cover }}%{% else %}&mdash;{% endif %}</td>
+          <td>{% if period.rainfall_mm is not none %}{{ period.rainfall_mm }} mm ({{ period.rainfall_period }}){% else %}&mdash;{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="source-line">Source: <a href="{{ forecast.forecast_source_url }}" target="_blank" rel="noopener">AgroMonitoring forecast</a>.</p>
+</section>
+{% elif error_message %}
+<div class="notice weather-error" role="alert">
+  <p>{{ error_message }}</p>
+  <button class="button button-secondary" type="submit" form="weather-form" data-weather-retry>Retry weather request</button>
+</div>
+{% endif %}
+
+{% if cached %}
+<section class="panel mb-panel">
+  <h2>Stored forecast{% if cached[0].stale %} <span class="tag tag-warn">Stale &mdash; not current</span>{% endif %}</h2>
+  <p class="small muted">Saved only for the farm coordinates you consented to store · {{ cached[0].source }} · fetched {{ cached[0].fetched_at }}.</p>
+  <div class="table-wrap">
+  {% if cached[0].source == weather_source %}
+    <table><thead><tr><th>Forecast time (UTC)</th><th>Temperature</th><th>Rainfall</th></tr></thead><tbody>
+    {% for row in cached %}<tr><td>{{ row.forecast_date }}</td><td>{{ row.temp_min }}&deg;C</td><td>{% if row.precipitation_mm is not none %}{{ row.precipitation_mm }} mm{% else %}&mdash;{% endif %}</td></tr>{% endfor %}
+    </tbody></table>
+  {% else %}
+    <table><thead><tr><th>Date</th><th>Max / min &deg;C</th><th>Precipitation</th><th>Chance</th></tr></thead><tbody>
+    {% for row in cached %}<tr><td>{{ row.forecast_date }}</td><td>{{ row.temp_max }} / {{ row.temp_min }}</td><td>{{ row.precipitation_mm }} mm</td><td>{{ row.precipitation_probability if row.precipitation_probability is not none else '&mdash;'|safe }}{% if row.precipitation_probability is not none %}%{% endif %}</td></tr>{% endfor %}
+    </tbody></table>
+  {% endif %}
+  </div>
+</section>
+{% endif %}
+<p class="source-line">Provider documentation: <a href="{{ source_url }}" target="_blank" rel="noopener">Current weather</a> and <a href="{{ forecast_source_url }}" target="_blank" rel="noopener">forecast API</a>. Confirm farm conditions locally before making irrigation decisions.</p>
+{% endblock %}

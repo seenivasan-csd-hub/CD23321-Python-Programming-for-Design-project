@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block title %}Leaf Scanner | FarmIQ{% endblock %}
+{% block content %}
+<header class="page-heading">
+  <p class="eyebrow">LOCAL IMAGE SCANNER</p>
+  <h1>{{ t.disease }}</h1>
+  <p>FarmIQ reports candidate image classes for a limited research model. A class score is not a diagnosis or a probability. The model has no validated out-of-distribution detector and may assign an unsupported plant to a known class.</p>
+</header>
+
+<div class="scanner-layout">
+  <section class="panel">
+    <h2>Analyze a leaf photo</h2>
+    <p class="muted">Choose one sharp, well-lit leaf that fills most of the frame. Avoid blur, shadows, glare, hands, labels and busy backgrounds. JPG, PNG or WEBP; maximum 5 MB, minimum 128 &times; 128 pixels.</p>
+    {% if status.available %}
+      <p class="tag">{{ status.message }}</p>
+    {% else %}
+      <p class="notice compact-notice">{{ status.message }} The scanner will not invent a prediction.</p>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" data-scan-form>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      {% if status.kind == 'legacy' %}
+        <div class="field-group">
+          <label for="crop">Crop in the photo</label>
+          <select id="crop" name="crop" required>
+            {% for crop in supported_crops %}<option value="{{ crop|lower }}">{{ crop|title }}</option>{% endfor %}
+          </select>
+          <p class="field-help">This demo model recognizes maize, cassava and bean classes. If the plant is another crop, do not interpret its output as a diagnosis.</p>
+        </div>
+      {% else %}
+        <p class="field-help">The trained PlantDoc model maps its own classes to crops; it does not ask you to select one.</p>
+      {% endif %}
+
+      <div class="field-group">
+        <label for="leaf_image">Leaf image</label>
+        <input id="leaf_image" name="leaf_image" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" required data-image-input>
+      </div>
+      <img class="image-preview" data-image-preview alt="Selected leaf photo preview" hidden>
+
+      <div class="camera-box">
+        <video data-camera-preview autoplay playsinline muted hidden aria-label="Live camera preview"></video>
+        <canvas data-camera-canvas hidden></canvas>
+        <div class="button-row">
+          <button class="button button-secondary" type="button" data-camera-start>Open camera</button>
+          <button class="button button-secondary" type="button" data-camera-capture disabled>Capture photo</button>
+        </div>
+        <p class="field-help" data-camera-status aria-live="polite">Camera permission is requested only after you choose Open camera. You can also upload an image.</p>
+      </div>
+
+      <button class="button" type="submit" data-scan-submit>Scan image</button>
+      <div class="scan-progress" data-scan-progress hidden aria-live="polite">
+        <progress></progress><span data-scan-status>Scanning image locally...</span>
+      </div>
+    </form>
+
+    <details class="class-list">
+      <summary>Recognized image classes ({{ status.classes|length }})</summary>
+      {% if status.classes %}
+        <ul>{% for class_name in status.classes %}<li>{{ class_name }}</li>{% endfor %}</ul>
+      {% else %}
+        <p class="muted">No model class list is currently available.</p>
+      {% endif %}
+    </details>
+    <p class="small muted source-line">Model: {{ status.name }} · {{ model_weight_size }} · {{ model_license }}{% if model_url %} · <a href="{{ model_url }}" target="_blank" rel="noopener">Model source</a>{% endif %}</p>
+  </section>
+
+  <section class="panel result-panel" aria-live="polite">
+    <p class="eyebrow">SCAN RESULT</p>
+    <h2>Prediction status</h2>
+    {% if result %}
+      {% if result.image_url %}
+        <figure class="scan-result-figure">
+          <img class="scan-result-image" src="{{ result.image_url }}" alt="Uploaded leaf photo">
+          <figcaption>Uploaded photo{% if result.selected_crop %} · Crop selected: {{ result.selected_crop }}{% endif %}</figcaption>
+        </figure>
+      {% endif %}
+      {% if result.quality_warning %}<p class="notice compact-notice" role="status"><strong>Photo quality check:</strong> {{ result.quality_warning }}</p>{% endif %}
+      {% if result.prediction %}
+        {% if result.prediction.uncertain %}
+          <div class="notice compact-notice" role="alert">
+            <strong>Uncertain result — no disease diagnosis.</strong>
+            {% if result.prediction.crop_mismatch %}
+              The selected crop is {{ result.prediction.selected_crop }} but the leading model class maps to {{ result.prediction.predicted_crop }}. Check the crop selection and retake a clear image before another scan.
+            {% endif %}
+            {% if result.prediction.uncertainty_reasons %}<ul>{% for reason in result.prediction.uncertainty_reasons %}<li>{{ reason }}</li>{% endfor %}</ul>{% endif %}
+            Retake a clear image and seek expert confirmation before taking action.
+          </div>
+          <p><strong>Leading model class:</strong> {{ result.prediction.raw_label|replace('_',' ')|title }}</p>
+          {% if result.prediction.predicted_crop %}<p><strong>Model crop class:</strong> {{ result.prediction.predicted_crop }}</p>{% endif %}
+        {% else %}
+          <div class="prediction-name">Candidate class: {{ result.prediction.raw_label|replace('_',' ')|title }}</div>
+          {% if result.prediction.predicted_crop %}<p><strong>Model crop class:</strong> {{ result.prediction.predicted_crop }}</p>{% endif %}
+          <p class="notice compact-notice">This is an unconfirmed model suggestion, not a diagnosis. Unsupported or out-of-distribution plants may still receive a class.</p>
+        {% endif %}
+        <p><strong>Model output score:</strong> {{ '%.4f'|format(result.prediction.confidence) }} <span class="tag tag-warn">{{ result.prediction.score_label }}</span></p>
+        {% if result.prediction.top_predictions %}
+          <details class="class-list">
+            <summary>Top model outputs</summary>
+            <ol>{% for candidate in result.prediction.top_predictions %}<li>{{ candidate.label|replace('_',' ')|title }}{% if candidate.crop %} ({{ candidate.crop }}){% endif %} — raw score {{ '%.4f'|format(candidate.score) }}</li>{% endfor %}</ol>
+          </details>
+        {% endif %}
+        <p><a href="#leaf_image">Choose or retake a photo</a></p>
+      {% else %}
+        <p class="notice compact-notice">No disease prediction was made. The image was stored privately on this device.</p>
+        <p><a href="#leaf_image">Choose or retake a photo</a></p>
+      {% endif %}
+
+      {% if result.guidance %}
+        <section class="disease-guidance">
+          <h3>{{ result.guidance.name }}</h3>
+          <p><strong>Crop:</strong> {{ result.guidance.crop }}</p>
+          <h4>Symptoms to verify</h4>
+          <p>{{ result.guidance.symptoms }}</p>
+          <p class="tamil-guidance" lang="ta">{{ result.guidance.symptoms_ta }}</p>
+          <h4>Immediate non-chemical steps</h4>
+          <ul>{% for step in result.guidance.immediate_steps %}<li>{{ step }}</li>{% endfor %}</ul>
+          <ul class="tamil-guidance" lang="ta">{% for step in result.guidance.immediate_steps_ta %}<li>{{ step }}</li>{% endfor %}</ul>
+          <h4>Prevention and monitoring</h4>
+          <ul>{% for step in result.guidance.prevention_monitoring %}<li>{{ step }}</li>{% endfor %}</ul>
+          <ul class="tamil-guidance" lang="ta">{% for step in result.guidance.prevention_monitoring_ta %}<li>{{ step }}</li>{% endfor %}</ul>
+          <p>{{ result.guidance.next_steps }}</p>
+          <p class="small muted">FarmIQ does not select or dose a pesticide from an image result. Confirm the crop, disease and any product label with a qualified agricultural professional.</p>
+          <p class="small source-line">
+            Source: <a href="{{ result.guidance.source_url }}" target="_blank" rel="noopener">{{ result.guidance.source_title }}</a>.
+            {% if result.guidance.source_publication_date %}Published {{ result.guidance.source_publication_date }} · {% endif %}
+            Reviewed {{ result.guidance.source_checked }}.
+          </p>
+        </section>
+      {% endif %}
+    {% else %}
+      <p class="muted">No scan submitted. Invalid images and missing models are shown as unavailable, never as a prediction.</p>
+    {% endif %}
+  </section>
+</div>
+
+<section class="panel history-panel" id="nearby-help">
+  <p class="eyebrow">AGRICULTURAL EXTENSION</p>
+  <h2>Find nearby agricultural help</h2>
+  <p>Enter a village, town, district or PIN code, or choose to share your location, then search Google Maps for a Krishi Vigyan Kendra, agricultural extension office or plant-disease diagnostic service. FarmIQ does not invent nearby listings, distances or opening hours. Confirm map details with the center before travelling.</p>
+  <div class="nearby-help-controls">
+    <div class="field-group">
+      <label for="help-location">Village, town, district or PIN code</label>
+      <input id="help-location" type="text" autocomplete="postal-code" maxlength="160" placeholder="For example, Salem or 636001" data-help-location-input>
+    </div>
+    <div class="button-row">
+      <button class="button button-secondary" type="button" data-help-geolocate>Use my location</button>
+      <a class="button" href="#" target="_blank" rel="noopener" data-help-map hidden>Search Google Maps</a>
+    </div>
+  </div>
+  <p class="field-help" data-help-location-status aria-live="polite">Location permission is requested only after you click Use my location.</p>
+
+  <div class="expert-contact-grid">
+    <article class="weather-card">
+      <h3>TNAU Agricultural Technology Information Centre</h3>
+      <p>The Farmers Facility Centre lists a Plant Protection Laboratory for pest and pathogen identification and recommendations.</p>
+      <p><strong>Phone:</strong> <a href="tel:+914226611315">0422-6611315</a> / <a href="tel:+914226611219">0422-6611219</a><br><strong>Address:</strong> Directorate of Extension Education, TNAU, Coimbatore.</p>
+      <p><a href="https://agritech.tnau.ac.in/atic/atic_ffc.html" target="_blank" rel="noopener">TNAU ATIC source and services</a></p>
+    </article>
+    <article class="weather-card">
+      <h3>TNAU Department of Plant Pathology</h3>
+      <p>University plant pathology contact in Coimbatore for crop-disease research and extension guidance; this is not a human or veterinary clinic.</p>
+      <p><strong>Office:</strong> <a href="tel:+914226611226">+91 422 6611226</a><br><strong>Phone:</strong> <a href="tel:+914226611426">+91 422 6611426</a><br><strong>Email:</strong> <a href="mailto:pathology@tnau.ac.in">pathology@tnau.ac.in</a></p>
+      <p><a href="https://sites.google.com/view/crop-protection/home/pathology" target="_blank" rel="noopener">TNAU pathology department source</a></p>
+    </article>
+  </div>
+  <p class="small source-line">Other official references: <a href="https://sites.google.com/view/crop-protection/home/pathology" target="_blank" rel="noopener">TNAU plant pathology</a> · <a href="https://www.tnagrisnet.tn.gov.in/home/disDetails/" target="_blank" rel="noopener">Tamil Nadu Department of Agriculture disease details</a>.</p>
+</section>
+
+<section class="panel history-panel">
+  <h2>Scan history</h2>
+  {% if scans %}
+    <div class="table-wrap"><table><thead><tr><th>Photo</th><th>Date</th><th>Crop selected or mapped</th><th>Top class</th><th>Raw score</th><th>Status</th><th></th></tr></thead><tbody>
+      {% for scan in scans %}<tr>
+        <td><a href="{{ url_for('disease_scan_image', scan_id=scan.scan_id) }}"><img class="scan-history-thumb" src="{{ url_for('disease_scan_image', scan_id=scan.scan_id) }}" alt="Open saved leaf photo"></a></td>
+        <td>{{ scan.created_at }}</td>
+        <td>{{ scan.crop_name|title if scan.crop_name else '&mdash;'|safe }}</td>
+        <td>{% if scan.uncertain %}Uncertain · {% endif %}{{ scan.predicted_label|replace('_',' ')|title if scan.predicted_label else 'No prediction' }}{% if scan.crop_mismatch %}<br><span class="tag tag-warn">Crop mismatch</span><br><small>Model class maps to {{ scan.predicted_crop }}; selected crop was {{ scan.crop_name|title }}.</small>{% endif %}</td>
+        <td>{{ '%.4f'|format(scan.confidence) if scan.confidence is not none else '&mdash;'|safe }}</td>
+        <td>{{ scan.scan_status|replace('_',' ')|title }}</td>
+        <td><form method="post" action="{{ url_for('delete_disease_scan', scan_id=scan.scan_id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="text-button" type="submit">Delete image and record</button></form></td>
+      </tr>{% endfor %}
+    </tbody></table></div>
+  {% else %}<p class="muted">No scans have been saved.</p>{% endif %}
+</section>
+{% endblock %}

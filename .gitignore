@@ -1,0 +1,33 @@
+__pycache__/
+*.py[cod]
+.venv/
+**/.venv/
+.pytest_cache/
+
+# Secrets and local credentials
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+secrets.*
+credentials.*
+
+# Local databases, logs, and uploads can contain personal or private data
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.log
+logs/
+instance/uploads/*
+!instance/uploads/.gitkeep
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Downloaded training data and generated PlantDoc runs
+data/plantdoc/
+models/plantdoc/

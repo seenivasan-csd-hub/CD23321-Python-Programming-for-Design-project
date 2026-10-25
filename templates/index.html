@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}FarmIQ | Smart Agriculture{% endblock %}
+{% block content %}
+<section class="hero"><div><p class="eyebrow">TAMIL NADU · FARM PLANNING</p><h1>{{ t.app_name }}</h1><p>{{ t.tagline }}. Save a farm profile, review your soil test and compare crop windows from TNAU sources.</p><div class="button-row"><a class="button button-light" href="{{ url_for('farm_profile') }}">{% if profile %}View farm profile{% else %}Create farm profile{% endif %}</a><a class="button button-outline" href="{{ url_for('crop_advice') }}">Explore crop calendar</a></div></div><div class="hero-mark" aria-hidden="true"><img src="{{ url_for('static', filename='logo.svg') }}" alt=""></div></section>
+<div class="dashboard-grid">
+  <section class="panel"><div class="section-heading"><div><p class="eyebrow">YOUR FARM</p><h2>Farm location</h2></div><a href="{{ url_for('farm_profile') }}">Edit</a></div>
+    {% if profile %}<p class="location-name">{{ profile.village }}, {{ profile.district }}</p><p class="muted">Tamil Nadu{% if profile.area_acres %} · {{ profile.area_acres }} acres{% endif %}</p><dl class="compact-dl"><dt>Crop</dt><dd>{{ profile.crop or 'Not set' }}</dd><dt>Soil</dt><dd>{{ profile.soil_type or 'Not recorded' }}</dd><dt>Irrigation</dt><dd>{{ profile.irrigation_method|replace('_',' ')|title }}</dd></dl>{% if profile.latitude is not none %}<p class="small muted">Coordinates saved with your consent: {{ '%.4f'|format(profile.latitude) }}, {{ '%.4f'|format(profile.longitude) }}</p>{% else %}<p class="small muted">No farm coordinates saved.</p>{% endif %}
+    {% else %}<p>No farm location is saved on this device.</p><a href="{{ url_for('farm_profile') }}">Set a district and village</a>{% endif %}
+  </section>
+  <section class="panel"><div class="section-heading"><div><p class="eyebrow">SOIL TEST</p><h2>Soil health</h2></div><a href="{{ url_for('soil_health') }}">Open report</a></div>
+    {% if latest_soil %}<p><span class="tag">{{ source_label(latest_soil.source) }}</span></p><p class="small muted">{{ latest_soil.confidence_label }}</p><div class="metric-row">{% for key in ['nitrogen','phosphorus','potassium'] %}<div class="metric"><span>{{ soil_summary[key].label }}</span><strong>{{ soil_summary[key].value if soil_summary[key].value is not none else '—' }}</strong><small>{{ soil_summary[key].band }} · {{ soil_summary[key].unit }}</small></div>{% endfor %}</div>
+    {% else %}<p>No soil measurements are available. The app does not estimate soil values from location.</p><a href="{{ url_for('soil_health') }}">Enter a soil report</a>{% endif %}
+  </section>
+  <section class="panel"><div class="section-heading"><div><p class="eyebrow">WEATHER</p><h2>Forecast status</h2></div><a href="{{ url_for('weather') }}">Check weather</a></div>
+    {% if weather_rows %}<p>Latest stored forecast{% if weather_rows[0].stale %} <span class="tag tag-warn">Stale</span>{% endif %}</p><p class="muted small">{{ weather_rows[0].source }} · fetched {{ weather_rows[0].fetched_at }}</p>{% else %}<p>Weather is fetched only after you submit coordinates on the weather page.</p>{% endif %}
+  </section>
+  <section class="panel"><div class="section-heading"><div><p class="eyebrow">PLANT HEALTH</p><h2>Disease scanner</h2></div><a href="{{ url_for('disease_scanner') }}">Open scanner</a></div>
+    {% if model_status.available %}<span class="tag">Local model ready · research use</span>{% else %}<span class="tag tag-warn">No prediction model</span>{% endif %}<p class="muted small">{{ model_status.message }}</p>
+  </section>
+</div>
+<section class="panel history-panel"><div class="section-heading"><div><p class="eyebrow">FARM HISTORY</p><h2>Recent crop advisories</h2></div><a href="{{ url_for('crop_advice') }}">New advisory</a></div>
+  {% if recent_advice %}<div class="table-wrap"><table><thead><tr><th>District</th><th>Sowing month</th><th>Water</th><th>Saved</th></tr></thead><tbody>{% for row in recent_advice %}<tr><td>{{ row.district }}</td><td>{{ row.sowing_month }}</td><td>{{ row.water_availability|title }}</td><td>{{ row.created_at }}</td></tr>{% endfor %}</tbody></table></div>{% elif legacy_recent %}<p class="muted">The original demo contains {{ legacy_recent|length }} range-fit result(s). The district advisory now records its assumptions separately.</p>{% else %}<p class="muted">Saved crop comparisons will appear here.</p>{% endif %}
+</section>
+{% endblock %}

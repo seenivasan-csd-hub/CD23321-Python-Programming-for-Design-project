@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Crop Demo | FarmIQ{% endblock %}
+{% block content %}
+<header class="page-heading"><p class="eyebrow">PRESERVED STARTER FEATURE</p><h1>Demo range-fit comparison</h1><p>For software demonstration only. These fixed ranges are not a scientifically validated suitability model and must not be used for planting decisions.</p></header>
+<form method="post" class="panel mb-panel"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><div class="form-grid">{% for field,label in [('location','Location label (optional)'),('nitrogen','Nitrogen (N)'),('phosphorus','Phosphorus (P)'),('potassium','Potassium (K)'),('soil_ph','Soil pH'),('temperature','Temperature (°C)'),('humidity','Humidity (%)'),('rainfall','Rainfall (mm)')] %}<div><label for="{{ field }}">{{ label }}</label><input id="{{ field }}" name="{{ field }}" type="{% if field == 'location' %}text{% else %}number{% endif %}" step="any" {% if field != 'location' %}required{% endif %}></div>{% endfor %}</div><button class="button" type="submit">Run demo</button></form>
+{% if results %}<section class="panel"><h2>Relative demo scores</h2>{% for item in results %}<article class="result-line"><h3>{{ item.crop }} · {{ item.score }}%</h3><p>{{ item.reason }} {{ item.note }}</p></article>{% endfor %}</section>{% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="{{ 'ta' if lang == 'ta' else 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183d2e">
+  <title>{% block title %}FarmIQ | Smart Agriculture{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="{{ url_for('index') }}" aria-label="FarmIQ home"><img class="brand-emblem" src="{{ url_for('static', filename='logo.svg') }}" alt=""><span class="brand-name">{{ t.app_name }}</span></a>
+    <nav aria-label="Main navigation">
+      {% if current_user %}
+      <a href="{{ url_for('index') }}">{{ t.dashboard }}</a>
+      <a href="{{ url_for('farm_profile') }}">{{ t.farm_details }}</a>
+      <a href="{{ url_for('soil_health') }}">Soil health</a>
+      <a href="{{ url_for('crop_advice') }}">{{ t.crop_tool }}</a>
+      <a href="{{ url_for('weather') }}">{{ t.weather }}</a>
+      <a href="{{ url_for('market') }}">{{ t.market }}</a>
+      <a href="{{ url_for('disease_scanner') }}">{{ t.disease }}</a>
+      <span class="user-name">{{ current_user.full_name }}</span>
+      <form class="nav-logout" method="post" action="{{ url_for('logout') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit">Sign out</button></form>
+      {% else %}
+      <a href="{{ url_for('login') }}">Sign in</a>
+      <a href="{{ url_for('register') }}">Create account</a>
+      {% endif %}
+      <a class="language-link" href="?lang={{ 'en' if lang == 'ta' else 'ta' }}" lang="{{ 'en' if lang == 'ta' else 'ta' }}">{{ t.english if lang == 'ta' else t.tamil }}</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="page-shell">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}<div class="flash-stack" aria-live="polite">{% for category, message in messages %}
+      <div class="flash flash-{{ category }}" role="status">{{ message }}</div>
+    {% endfor %}</div>{% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+  <aside class="notice" role="note"><strong>Decision-support prototype.</strong> Use current TNAU, ICAR and local extension guidance before making crop, fertilizer, irrigation or plant-health decisions. Soil and disease interpretations are limited by the data shown on each page.</aside>
+</main>
+<footer class="site-footer">FarmIQ · Tamil Nadu · Data is stored locally in this workspace.</footer>
+</body>
+</html>

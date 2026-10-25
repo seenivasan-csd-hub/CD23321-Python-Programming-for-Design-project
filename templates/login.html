@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Sign In | FarmIQ{% endblock %}
+{% block content %}
+<section class="auth-panel panel">
+  <p class="eyebrow">FARMIQ ACCOUNT</p>
+  <h1>Sign in</h1>
+  <p class="muted">Use the email address and password for your FarmIQ account.</p>
+  <form method="post" action="{{ url_for('login') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="next" value="{{ next_url }}">
+    <div class="field-group"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="username" maxlength="254" required autofocus></div>
+    <div class="field-group"><label for="password">Password</label><div class="password-control"><input id="password" name="password" type="password" autocomplete="current-password" maxlength="256" required><button type="button" class="password-toggle" data-password-toggle="password" aria-controls="password" aria-pressed="false">Show</button></div></div>
+    <button class="button auth-submit" type="submit">Sign in</button>
+  </form>
+  <p class="auth-switch">New to FarmIQ? <a href="{{ url_for('register') }}">Create an account</a></p>
+</section>
+{% endblock %}

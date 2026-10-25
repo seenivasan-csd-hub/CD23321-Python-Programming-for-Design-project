@@ -1,0 +1,122 @@
+{
+  "version": "2026-10-25-tnau-curated-v1",
+  "districts_source": "https://lokbhavan.tn.gov.in/districts-of-tamil-nadu/",
+  "crops": [
+    {
+      "name": "Paddy (rice)", "group": "Cereals", "water_note": "Rice seasons require adequate rainfall or irrigation; the app does not estimate water supply from location.",
+      "source_title": "TNAU Rice Seasons of Tamil Nadu",
+      "source_url": "https://www.agritech.tnau.ac.in/agriculture/agri_seasonandvarieties_rice.html",
+      "windows": [
+        {"season":"Navarai", "months":[12,1], "duration":"Under 120 days", "districts":["Thiruvallur","Vellore","Tiruvannamalai","Cuddalore","Viluppuram","Tiruchirappalli","Perambalur","Karur","Nagapattinam","Madurai","Theni","Salem","Namakkal","Dindigul","Dharmapuri","Coimbatore","Erode","Pudukkottai"], "water_note":"TNAU lists this short-duration rice window for these districts; confirm local water and variety.", "source_title":"TNAU Rice Seasons of Tamil Nadu"},
+        {"season":"Sornavari", "months":[4,5], "duration":"Under 120 days", "districts":["Thiruvallur","Vellore","Tiruvannamalai","Cuddalore","Viluppuram","Namakkal","Dharmapuri"], "water_note":"Adequate irrigation or rainfall is needed.", "source_title":"TNAU Rice Seasons of Tamil Nadu"},
+        {"season":"Early Kar / Kar", "months":[5,6], "duration":"Under 120 days", "districts":["Tirunelveli","Kanyakumari","Thoothukudi","Erode","Coimbatore","Madurai","Theni","Dindigul","Salem","Namakkal","Dharmapuri"], "water_note":"Confirm local water availability and sowing window.", "source_title":"TNAU Rice Seasons of Tamil Nadu"},
+        {"season":"Kuruvai", "months":[6,7], "duration":"Under 120 days", "districts":["Tiruchirappalli","Perambalur","Karur","Thanjavur","Nagapattinam","Thiruvarur","Pudukkottai","Erode"], "water_note":"Confirm command-area releases or other reliable water before planting.", "source_title":"TNAU Rice Seasons of Tamil Nadu"},
+        {"season":"Early Samba", "months":[7,8], "duration":"130–135 days", "districts":["Thiruvallur","Vellore","Tiruvannamalai","Salem","Namakkal","Cuddalore","Viluppuram","Madurai","Theni","Ramanathapuram","Dharmapuri","Coimbatore","Erode","Pudukkottai","The Nilgiris"], "water_note":"Season and duration are variety-dependent; confirm locally.", "source_title":"TNAU Rice Seasons of Tamil Nadu"},
+        {"season":"Samba", "months":[8], "duration":"130–135 days or over 150 days, depending on variety", "all_districts":true, "water_note":"TNAU lists Samba for all districts; this is not a prediction of field suitability or water sufficiency.", "source_title":"TNAU Rice Seasons of Tamil Nadu"},
+        {"season":"Late Samba / Thaladi / Pishanam", "months":[9,10], "duration":"130–135 days", "all_districts":true, "water_note":"TNAU describes this as applying to rice-growing districts; confirm local rice production and water availability.", "source_title":"TNAU Rice Seasons of Tamil Nadu"},
+        {"season":"Late Thaladi", "months":[10,11], "duration":"115–120 days", "districts":["Thanjavur","Nagapattinam","Thiruvarur","Tiruchirappalli","Perambalur","Karur"], "water_note":"Confirm local variety and field conditions.", "source_title":"TNAU Planting Seasons in Tamil Nadu"}
+      ]
+    },
+    {
+      "name": "Groundnut", "group": "Oilseeds", "water_note": "TNAU lists both rainfed and irrigated cultivation contexts; match the local season and water plan.",
+      "source_title": "TNAU Groundnut Seasons of Tamil Nadu",
+      "source_url": "https://www.agritech.tnau.ac.in/agriculture/agri_seasonandvarieties_groundnut.html",
+      "windows": [
+        {"season":"Thaipattam", "months":[1,2], "districts":["Ramanathapuram","Tirunelveli"], "source_title":"TNAU Groundnut Seasons of Tamil Nadu"},
+        {"season":"Chithiraipattam", "months":[4,5], "districts":["Coimbatore","Tiruppur","Viluppuram"], "source_title":"TNAU Groundnut Seasons of Tamil Nadu"},
+        {"season":"Vaigasipattam", "months":[5,6], "districts":["Namakkal","Dharmapuri"], "source_title":"TNAU Groundnut Seasons of Tamil Nadu"},
+        {"season":"Anipattam", "months":[6,7], "districts":["Coimbatore","Tiruppur","Erode","Theni","Dindigul","Karur","Pudukkottai","Madurai","Sivaganga","Thiruvallur","Cuddalore","Vellore","Salem","Dharmapuri","Krishnagiri","Tiruchirappalli"], "source_title":"TNAU Groundnut Seasons of Tamil Nadu"},
+        {"season":"Adipattam", "months":[7,8], "districts":["Kancheepuram","Virudhunagar","Perambalur","Ariyalur","Chengalpattu"], "source_title":"TNAU Groundnut Seasons of Tamil Nadu"},
+        {"season":"Purattasipattam", "months":[9,10], "districts":["Ramanathapuram","Tirunelveli","Tiruvannamalai"], "source_title":"TNAU Groundnut Seasons of Tamil Nadu"},
+        {"season":"Ayppasipattam", "months":[10,11], "districts":["Sivaganga","Cuddalore","Tiruvannamalai","Ramanathapuram"], "source_title":"TNAU Groundnut Seasons of Tamil Nadu"},
+        {"season":"Karthigaipattam", "months":[11,12], "districts":["Thoothukudi","Vellore","Tiruvannamalai","Viluppuram","Salem","Krishnagiri","Kallakurichi","Ranipet","Tirupathur"], "source_title":"TNAU Groundnut Seasons of Tamil Nadu"},
+        {"season":"Margazhipattam", "months":[12,1], "districts":["Erode","Theni","Dindigul","Karur","Pudukkottai","Madurai","Virudhunagar","Thiruvallur","Kancheepuram","Perambalur","Ariyalur","Tiruchirappalli","Thanjavur","Thiruvarur","Nagapattinam","Mayiladuthurai"], "source_title":"TNAU Groundnut Seasons of Tamil Nadu"}
+      ]
+    },
+    {
+      "name": "Maize", "group": "Cereals", "water_note": "TNAU distinguishes irrigated sowing windows from rainfed Purattasi sowing.",
+      "source_title": "TNAU Maize Season and Varieties",
+      "source_url": "https://agritech.tnau.ac.in/agriculture/agri_maize_season_varieties.html",
+      "windows": [
+        {"season":"Aadi pattam (irrigated)", "months":[6,7], "water_modes":["irrigated"], "districts":["Viluppuram","Vellore","Thiruvallur","Ranipet","Tiruvannamalai","Cuddalore","Tirupathur","Kallakurichi","Salem","Namakkal","Dharmapuri","Krishnagiri","Coimbatore","Tiruppur","Dindigul","Erode","Karur","Tiruchirappalli","Perambalur","Ariyalur","Thanjavur","Thiruvarur","Mayiladuthurai","Pudukkottai","Madurai","Theni","Virudhunagar","Sivaganga","Ramanathapuram","Tenkasi","Tirunelveli","Thoothukudi"], "source_title":"TNAU Maize Season and Varieties"},
+        {"season":"Purattasi pattam (rainfed)", "months":[9,10], "water_modes":["rainfed"], "districts":["Viluppuram","Vellore","Thiruvallur","Ranipet","Tiruvannamalai","Cuddalore","Tirupathur","Kallakurichi","Salem","Namakkal","Dharmapuri","Krishnagiri","Coimbatore","Tiruppur","Dindigul","Erode","Karur","Tiruchirappalli","Perambalur","Ariyalur","Thanjavur","Thiruvarur","Mayiladuthurai","Pudukkottai","Madurai","Theni","Virudhunagar","Sivaganga","Ramanathapuram","Tenkasi","Tirunelveli","Thoothukudi"], "source_title":"TNAU Maize Season and Varieties"},
+        {"season":"Karthigai pattam (irrigated)", "months":[11,12], "water_modes":["irrigated"], "districts":["Viluppuram","Vellore","Thiruvallur","Ranipet","Tiruvannamalai","Cuddalore","Tirupathur","Kallakurichi","Salem","Namakkal","Dharmapuri","Krishnagiri","Coimbatore","Tiruppur","Dindigul","Erode","Karur","Tiruchirappalli","Perambalur","Ariyalur","Thanjavur","Thiruvarur","Mayiladuthurai","Pudukkottai","Madurai","Theni","Virudhunagar","Sivaganga","Ramanathapuram","Tenkasi","Tirunelveli","Thoothukudi"], "source_title":"TNAU Maize Season and Varieties"},
+        {"season":"Thai pattam (irrigated)", "months":[1,2], "water_modes":["irrigated"], "districts":["Viluppuram","Vellore","Thiruvallur","Ranipet","Tiruvannamalai","Cuddalore","Tirupathur","Kallakurichi","Salem","Namakkal","Dharmapuri","Krishnagiri","Coimbatore","Tiruppur","Dindigul","Erode","Karur","Tiruchirappalli","Perambalur","Ariyalur","Thanjavur","Thiruvarur","Mayiladuthurai","Pudukkottai","Madurai","Theni","Virudhunagar","Sivaganga","Ramanathapuram","Tenkasi","Tirunelveli","Thoothukudi"], "source_title":"TNAU Maize Season and Varieties"},
+        {"season":"Chithirai pattam (irrigated)", "months":[4,5], "water_modes":["irrigated"], "districts":["Viluppuram","Vellore","Thiruvallur","Ranipet","Tiruvannamalai","Cuddalore","Tirupathur","Kallakurichi","Thanjavur","Thiruvarur","Mayiladuthurai"], "source_title":"TNAU Maize Season and Varieties"}
+      ]
+    },
+    {
+      "name": "Pulses (redgram)", "group": "Pulses", "water_note": "TNAU lists rainfed and irrigated seasons; moisture stress and waterlogging need local assessment.",
+      "source_title": "TNAU Redgram Season and Varieties",
+      "source_url": "https://agritech.tnau.ac.in/agriculture/CropProduction/Pulses/pulses_redgram-2.html",
+      "windows": [
+        {"season":"Vaigasi pattam", "months":[5,6], "districts":["Krishnagiri","Dharmapuri","Salem","Erode","Coimbatore","Dindigul","Theni","Madurai"], "source_title":"TNAU Redgram Season and Varieties"},
+        {"season":"Adi / Avani pattam", "months":[6,7,8], "districts":["Vellore","Tiruvannamalai","Salem","Namakkal","Perambalur","Ariyalur","Madurai","Dindigul","Theni","Pudukkottai","Sivaganga"], "source_title":"TNAU Redgram Season and Varieties"},
+        {"season":"Purattasi pattam", "months":[9,10], "districts":["Vellore","Tiruvannamalai","Dharmapuri","Salem","Namakkal","Erode","Coimbatore","Madurai","Dindigul","Theni","Pudukkottai","Sivaganga","Perambalur","Ariyalur"], "source_title":"TNAU Redgram Season and Varieties"},
+        {"season":"Markazhi pattam (winter irrigated)", "months":[12,1], "all_districts":true, "exclude_districts":["The Nilgiris","Kanyakumari"], "water_modes":["irrigated"], "source_title":"TNAU Redgram Season and Varieties"},
+        {"season":"Chithirai pattam (summer irrigated)", "months":[4,5], "all_districts":true, "exclude_districts":["The Nilgiris","Kanyakumari"], "water_modes":["irrigated"], "source_title":"TNAU Redgram Season and Varieties"}
+      ]
+    },
+    {
+      "name": "Cotton", "group": "Fibre", "water_note": "Irrigated and rainfed TNAU windows differ; this match checks the selected water mode.",
+      "source_title": "TNAU Cotton Season and Varieties",
+      "source_url": "https://www.agritech.tnau.ac.in/agriculture/agri_seasonandvarieties_cotton.html",
+      "windows": [
+        {"season":"Winter irrigated", "months":[8,9], "duration":"150–160 days", "water_modes":["irrigated"], "districts":["Coimbatore","Erode","Tiruppur","Namakkal","Salem","Dharmapuri","Krishnagiri","Madurai","Dindigul","Theni","Cuddalore","Viluppuram","Tiruchirappalli","Kallakurichi"], "source_title":"TNAU Cotton Season and Varieties"},
+        {"season":"Winter rainfed", "months":[8,9], "duration":"140–150 days", "water_modes":["rainfed"], "districts":["Ariyalur","Perambalur","Salem","Namakkal","Kallakurichi"], "source_title":"TNAU Cotton Season and Varieties"},
+        {"season":"Winter rainfed", "months":[9,10], "duration":"140–150 days", "water_modes":["rainfed"], "districts":["Thoothukudi","Tenkasi","Madurai","Ramanathapuram","Virudhunagar","Sivaganga"], "source_title":"TNAU Cotton Season and Varieties"},
+        {"season":"Summer irrigated", "months":[2,3], "duration":"150–160 days", "water_modes":["irrigated"], "districts":["Erode","Ramanathapuram","Sivaganga","Theni","Salem","Thoothukudi","Virudhunagar","Tirunelveli","Tenkasi","Madurai","Dindigul","Thanjavur","Tiruchirappalli","Thiruvarur"], "source_title":"TNAU Cotton Season and Varieties"},
+        {"season":"Rice fallow", "months":[2,3], "duration":"125–135 days", "water_modes":["irrigated"], "districts":["Thanjavur","Thiruvarur","Nagapattinam","Tiruchirappalli","Perambalur","Karur","Cuddalore","Viluppuram"], "source_title":"TNAU Cotton Season and Varieties"}
+      ]
+    },
+    {
+      "name": "Sugarcane", "group": "Commercial crops", "water_note": "Long-duration crop requiring an adequate moisture plan; verify water, variety, and local planting season.",
+      "source_title": "TNAU Sugarcane Season and Varieties",
+      "source_url": "https://www.agritech.tnau.ac.in/expert_system/sugar/season%26varieties.html",
+      "windows": [
+        {"season":"Main season", "months":[12,1,2,3,4,5], "duration":"Variety-dependent; about 10–12 months in the cited TNAU guide", "all_districts":true, "source_title":"TNAU Sugarcane Season and Varieties", "note":"TNAU lists the main planting season across Tamil Nadu; this is not a field-level suitability guarantee."},
+        {"season":"Special season", "months":[6,7], "duration":"Variety-dependent", "districts":["Tiruchirappalli","Perambalur","Karur","Salem","Namakkal","Coimbatore"], "source_title":"TNAU Sugarcane Season and Varieties"}
+      ]
+    },
+    {
+      "name": "Sorghum and minor millets", "group": "Millets", "preliminary": true,
+      "source_title": "TNAU Crop Production Guide (2020)", "source_url": "https://tnau.ac.in/site/research/wp-content/uploads/sites/60/2020/02/Agriculture-CPG-2020.pdf",
+      "note":"Tamil Nadu has district/season recommendations for individual millet species and varieties. This starter has not yet encoded those complete tables, so it does not rank millets for a district/month.",
+      "water_note":"Rainfed suitability depends on local rainfall timing, soil, and crop species; confirm with local extension staff."
+    },
+    {
+      "name": "Banana", "group": "Horticulture", "preliminary": true,
+      "source_title": "TNAU Banana Season and Varieties", "source_url":"https://agritech.tnau.ac.in/expert_system/banana/season%26variety.html",
+      "note":"TNAU planting windows vary by wetland, garden land, padugai land, hill site, and variety. The app does not have enough district/land-type data to rank banana for a selected district.",
+      "soil_note":"TNAU describes well-drained loamy soils as suitable and alkaline/saline soils as unsuitable; check the cited guidance for the selected variety.",
+      "water_note":"Planting and irrigation needs vary by variety and land type; no district-level water suitability is inferred."
+    },
+    {
+      "name": "Coconut", "group": "Horticulture", "preliminary": true,
+      "source_title": "TNAU Coconut Planting Seasons and Climate", "source_url":"https://www.agritech.tnau.ac.in/expert_system/coconut/coconut/coconut_planting_seasons.html",
+      "note":"TNAU describes Tamil Nadu planting windows of June–July and December–January, with other timing where irrigation is assured. No district-level recommendation is encoded here, so coconut is not ranked.",
+      "water_note":"Planting timing and long-term water availability need local assessment."
+    },
+    {
+      "name": "Other pulses", "group": "Pulses", "preliminary": true,
+      "source_title": "TNAU Crop Production Guide (2020)", "source_url": "https://tnau.ac.in/site/research/wp-content/uploads/sites/60/2020/02/Agriculture-CPG-2020.pdf",
+      "note":"Other pulse crops have crop- and variety-specific TNAU calendars. Those tables are not fully encoded here, so this category is not ranked.",
+      "water_note":"Check crop-specific local guidance before sowing."
+    },
+    {
+      "name": "Sesame (gingelly)", "group": "Oilseeds", "preliminary": true,
+      "source_title": "TNAU Cropping Pattern for Cauvery Delta Zone", "source_url": "https://www.agritech.tnau.ac.in/agriculture/agri_agrometeorology_croppingpattern_cauvery.html",
+      "note":"TNAU documents sesame in specific Cauvery Delta cropping sequences. The available source does not support a statewide district/month ranking in this starter.",
+      "water_note":"Confirm the local crop sequence and water situation."
+    }
+  ],
+  "rotations": [
+    {
+      "districts":["Thanjavur","Thiruvarur","Nagapattinam","Tiruchirappalli","Ariyalur","Cuddalore","Pudukkottai","Mayiladuthurai"],
+      "title":"TNAU Cauvery Delta examples",
+      "examples":["Rice (June–September) → rice (October–January) → pulses or gingelly (February–May)","Rice (August–January) → groundnut (January–April) → gingelly (April–June)"],
+      "note":"These are documented Delta examples, not universal rotations. TNAU lists different sequences for soil, command area, irrigation, and rainfall conditions.",
+      "source_url":"https://www.agritech.tnau.ac.in/agriculture/agri_agrometeorology_croppingpattern_cauvery.html"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "plantdoc_aliases": {
+    "corn rust leaf": "maize_rust",
+    "corn leaf blight": "maize_blight"
+  },
+  "guidance": {
+    "maize_rust": {
+      "name": "Maize common rust pattern",
+      "crop": "Maize",
+      "symptoms": "TNAU describes minute flecks on both leaf surfaces followed by cinnamon-brown, powdery raised pustules. These signs need field confirmation.",
+      "symptoms_ta": "TNAU விளக்கப்படி, இலைகளின் இரு பக்கங்களிலும் சிறிய புள்ளிகள் தோன்றி, பின்னர் இலவங்கப்பட்டை நிறத்தில் தூள் போன்ற உயர்ந்த கொப்புளங்கள் உருவாகலாம். வயலில் உறுதிப்படுத்த வேண்டும்.",
+      "immediate_steps": [
+        "Inspect both sides of several leaves and check whether the pustules are spreading.",
+        "Photograph more than one affected leaf and ask an agricultural extension professional to confirm the pattern."
+      ],
+      "immediate_steps_ta": [
+        "பல இலைகளின் இரு பக்கங்களையும் பார்த்து, கொப்புளங்கள் பரவுகிறதா எனக் கவனிக்கவும்.",
+        "பாதிக்கப்பட்ட பல இலைகளின் படங்களை எடுத்து, வேளாண் விரிவாக்க நிபுணரிடம் உறுதிப்படுத்தவும்."
+      ],
+      "prevention_monitoring": [
+        "TNAU advises managing alternate hosts and removing infected crop remains; ask local extension staff to identify relevant alternate hosts and safe residue handling.",
+        "Monitor nearby maize plants, especially during cool, moist conditions."
+      ],
+      "prevention_monitoring_ta": [
+        "மாற்று தாவரங்களை அடையாளம் கண்டு கட்டுப்படுத்தவும், பாதிக்கப்பட்ட பயிர் எச்சங்களை பாதுகாப்பாக அகற்றவும் TNAU அறிவுறுத்துகிறது; பொருத்தமான தாவரங்களையும் எச்ச மேலாண்மையையும் உள்ளூர் விரிவாக்க அலுவலரிடம் உறுதிப்படுத்தவும்.",
+        "குளிர்ச்சியும் ஈரப்பதமும் உள்ள காலத்தில் அருகிலுள்ள மக்காச்சோளச் செடிகளையும் கண்காணிக்கவும்."
+      ],
+      "next_steps": "This image class is not a diagnosis. Do not choose a pesticide from the scan. Confirm the crop and symptoms with TNAU or a KVK extension professional.",
+      "source_title": "TNAU: Maize common rust",
+      "source_url": "https://agritech.tnau.ac.in/crop_protection/maize_disease_new/maize_4.html",
+      "source_publication_date": null,
+      "source_checked": "2026-10-26",
+      "chemical_recommendations": []
+    },
+    "maize_blight": {
+      "name": "Maize leaf blight pattern",
+      "crop": "Maize",
+      "symptoms": "TNAU describes long cigar-shaped grey-green to tan lesions, often beginning on lower leaves. Several causes can produce similar damage.",
+      "symptoms_ta": "TNAU விளக்கப்படி, கீழ் இலைகளில் முதலில் தோன்றக்கூடிய நீளமான சுருட்டு வடிவ சாம்பல்-பச்சை முதல் பழுப்பு நிறப் புள்ளிகள் காணப்படலாம். இதேபோன்ற சேதத்தை வேறு காரணங்களும் உருவாக்கலாம்.",
+      "immediate_steps": [
+        "Inspect lower leaves and note whether elongated lesions are present on multiple plants.",
+        "Keep a clear photo and ask an agricultural extension professional to confirm the cause before acting."
+      ],
+      "immediate_steps_ta": [
+        "கீழ் இலைகளைப் பார்த்து, பல செடிகளில் நீளமான புண்கள் உள்ளனவா எனக் கவனிக்கவும்.",
+        "தெளிவான படத்தை வைத்துக் கொண்டு, நடவடிக்கை எடுப்பதற்கு முன் வேளாண் விரிவாக்க நிபுணரிடம் காரணத்தை உறுதிப்படுத்தவும்."
+      ],
+      "prevention_monitoring": [
+        "TNAU advises removing infected maize stubble by safe burial or other locally approved residue management.",
+        "Monitor lower leaves and nearby plants during cool, humid weather; avoid moving infected residue through the field."
+      ],
+      "prevention_monitoring_ta": [
+        "பாதிக்கப்பட்ட மக்காச்சோளத் தாள்களை பாதுகாப்பாக புதைத்தல் அல்லது உள்ளூரில் அங்கீகரிக்கப்பட்ட பயிர் எச்ச மேலாண்மை முறையில் அகற்றுதல் குறித்து TNAU அறிவுறுத்துகிறது.",
+        "குளிர்ச்சியும் ஈரப்பதமும் உள்ள காலத்தில் கீழ் இலைகளையும் அருகிலுள்ள செடிகளையும் கண்காணித்து, பாதிக்கப்பட்ட எச்சங்களை வயல் முழுவதும் நகர்த்துவதைத் தவிர்க்கவும்."
+      ],
+      "next_steps": "This image class is not a diagnosis. TNAU lists multiple blight causes; confirm the disease before considering any treatment.",
+      "source_title": "TNAU: Maize leaf blight",
+      "source_url": "https://agritech.tnau.ac.in/crop_protection/maize_disease_new/maize_2.html",
+      "source_publication_date": null,
+      "source_checked": "2026-10-26",
+      "chemical_recommendations": []
+    },
+    "cassava_mosaic": {
+      "name": "Cassava mosaic pattern",
+      "crop": "Cassava (tapioca)",
+      "symptoms": "ICAR-CTCRI describes yellow or pale-green mosaic, leaf distortion or crumpling, reduced leaf size and, in severe cases, stunting. TNAU also notes twisted leaves and spread through infected setts and whiteflies.",
+      "symptoms_ta": "இலைகளில் மஞ்சள் அல்லது வெளிர் பச்சை மொசைக் வடிவம், இலை சுருங்குதல் அல்லது முறுக்கம், இலை அளவு குறைதல் மற்றும் தீவிர நிலையில் வளர்ச்சி குன்றுதல் இருக்கலாம் என ICAR-CTCRI விளக்குகிறது. பாதிக்கப்பட்ட நடவு தண்டுகள் மற்றும் வெள்ளை ஈக்கள் வழியாகவும் பரவலாம் என TNAU குறிப்பிடுகிறது.",
+      "immediate_steps": [
+        "Do not use cuttings from a plant suspected of mosaic symptoms as planting material.",
+        "Ask a local agricultural expert to inspect the plant; if confirmed, follow local guidance for removing infected plants and field sanitation."
+      ],
+      "immediate_steps_ta": [
+        "மொசைக் அறிகுறி இருக்கலாம் என சந்தேகப்படும் செடியிலிருந்து நடவு தண்டுகளை எடுக்க வேண்டாம்.",
+        "உள்ளூர் வேளாண் நிபுணரிடம் செடியைச் சோதிக்கச் சொல்லவும்; நோய் உறுதியானால் பாதிக்கப்பட்ட செடிகளை அகற்றுதல் மற்றும் வயல் சுகாதாரம் குறித்து உள்ளூர் வழிகாட்டுதலைப் பின்பற்றவும்."
+      ],
+      "prevention_monitoring": [
+        "ICAR-CTCRI and TNAU advise selecting disease-free planting material from healthy plants and removing confirmed infected plants early.",
+        "Monitor new growth and check for whiteflies; obtain vector-management advice from an agricultural expert."
+      ],
+      "prevention_monitoring_ta": [
+        "ஆரோக்கியமான செடிகளிலிருந்து நோயற்ற நடவு பொருளைத் தேர்வு செய்து, உறுதிப்படுத்தப்பட்ட பாதிக்கப்பட்ட செடிகளை ஆரம்பத்திலேயே அகற்ற ICAR-CTCRI மற்றும் TNAU அறிவுறுத்துகின்றன.",
+        "புதிய வளர்ச்சியையும் வெள்ளை ஈக்களையும் கண்காணித்து, பூச்சி பரவல் மேலாண்மைக்கு வேளாண் நிபுணரிடம் ஆலோசனை பெறவும்."
+      ],
+      "next_steps": "A model label cannot confirm a viral disease. Do not apply an insecticide based on this image. Seek confirmation from TNAU, ICAR-CTCRI or a KVK before treatment.",
+      "source_title": "ICAR-CTCRI: Cassava diseases guide",
+      "source_url": "https://www.ctcri.org/public/publications/2025-01/1-cassava_0.pdf",
+      "source_publication_date": null,
+      "source_checked": "2026-10-26",
+      "chemical_recommendations": []
+    },
+    "bean_spot": {
+      "name": "French bean angular leaf spot pattern",
+      "crop": "French bean",
+      "symptoms": "TNAU describes angular reddish-brown spots on French bean leaves. Other leaf problems can look similar.",
+      "symptoms_ta": "பிரெஞ்சு பீன்ஸ் இலைகளில் கோணமான சிவப்பு-பழுப்பு புள்ளிகள் காணப்படலாம் என TNAU விளக்குகிறது. வேறு இலைப் பிரச்சினைகளும் இதேபோல் தோன்றலாம்.",
+      "immediate_steps": [
+        "Inspect several leaves and confirm that the selected plant is French bean before interpreting this class.",
+        "Use healthy seed for future sowing and ask an extension professional to confirm suspected disease."
+      ],
+      "immediate_steps_ta": [
+        "பல இலைகளைப் பார்த்து, இந்த வகையைப் பொருள் கொள்ளும் முன் செடி பிரெஞ்சு பீன்ஸ் தானா என உறுதிப்படுத்தவும்.",
+        "அடுத்த விதைப்புக்கு ஆரோக்கியமான விதைகளைப் பயன்படுத்தி, சந்தேகமான நோயை விரிவாக்க நிபுணரிடம் உறுதிப்படுத்தவும்."
+      ],
+      "prevention_monitoring": [
+        "TNAU recommends healthy seed and a two-year crop rotation in infected fields.",
+        "Monitor new leaves and keep records of affected areas for an extension visit."
+      ],
+      "prevention_monitoring_ta": [
+        "ஆரோக்கியமான விதைகளைப் பயன்படுத்தவும்; பாதிக்கப்பட்ட வயலில் இரண்டு ஆண்டுகள் பயிர் சுழற்சி செய்யவும் TNAU பரிந்துரைக்கிறது.",
+        "புதிய இலைகளைக் கண்காணித்து, பாதிக்கப்பட்ட இடங்களைப் பதிவு செய்து விரிவாக்க அலுவலரிடம் காட்டவும்."
+      ],
+      "next_steps": "This image class is not a diagnosis. Confirm that the crop is French bean and ask an extension professional before considering treatment.",
+      "source_title": "TNAU: French bean angular leaf spot",
+      "source_url": "https://agritech.tnau.ac.in/crop_protection/frenchbean_disease_3.html",
+      "source_publication_date": null,
+      "source_checked": "2026-10-26",
+      "chemical_recommendations": []
+    },
+    "healthy": {
+      "name": "No modeled disease class matched",
+      "crop": "Selected supported crop only",
+      "symptoms": "A healthy-class result is not proof that a plant is disease-free.",
+      "symptoms_ta": "ஆரோக்கியம் என வரும் மாதிரி முடிவு, செடியில் நோய் இல்லை என்பதற்கான உறுதி அல்ல.",
+      "immediate_steps": [
+        "Continue checking new growth and both sides of leaves.",
+        "If symptoms remain or worsen, take another clear photo and seek expert confirmation."
+      ],
+      "immediate_steps_ta": [
+        "புதிய வளர்ச்சியையும் இலைகளின் இரு பக்கங்களையும் தொடர்ந்து பாருங்கள்.",
+        "அறிகுறிகள் தொடர்ந்தாலோ அதிகரித்தாலோ தெளிவான புதிய படம் எடுத்து நிபுணரிடம் உறுதிப்படுத்தவும்."
+      ],
+      "prevention_monitoring": [
+        "Use clean tools and healthy planting material, and monitor the crop regularly.",
+        "Do not use a healthy-class result to dismiss visible symptoms."
+      ],
+      "prevention_monitoring_ta": [
+        "சுத்தமான கருவிகள் மற்றும் ஆரோக்கியமான நடவு பொருளைப் பயன்படுத்தி, பயிரைத் தொடர்ந்து கண்காணிக்கவும்.",
+        "கண்ணுக்குத் தெரியும் அறிகுறிகளை ஆரோக்கியம் என்ற மாதிரி முடிவால் புறக்கணிக்க வேண்டாம்."
+      ],
+      "next_steps": "If symptoms are present, consult an agricultural extension professional; FarmIQ does not recommend a treatment from this result.",
+      "source_title": "Tamil Nadu Agricultural University Agritech Portal",
+      "source_url": "https://agritech.tnau.ac.in/",
+      "source_publication_date": null,
+      "source_checked": "2026-10-26",
+      "chemical_recommendations": []
+    },
+    "uncertain": {
+      "name": "Uncertain result — no disease diagnosis",
+      "crop": "Crop or class needs confirmation",
+      "symptoms": "The score is uncalibrated or the top class conflicts with the selected crop. The model cannot reliably identify unsupported plants or all out-of-distribution photos.",
+      "symptoms_ta": "மாதிரி மதிப்பெண் அளவுத்திருத்தம் செய்யப்படவில்லை அல்லது முதன்மை வகை தேர்ந்தெடுத்த பயிருடன் பொருந்தவில்லை. ஆதரிக்கப்படாத தாவரங்களையும் எல்லா வேறுபட்ட படங்களையும் இந்த மாதிரி நம்பகமாக அடையாளம் காணாது.",
+      "immediate_steps": [
+        "Do not choose a disease treatment from this scan.",
+        "Confirm the plant species, retake a sharp, well-lit photo of one affected leaf, and ask an agricultural expert to inspect it."
+      ],
+      "immediate_steps_ta": [
+        "இந்த ஸ்கேன் முடிவின் அடிப்படையில் நோய் சிகிச்சையைத் தேர்ந்தெடுக்க வேண்டாம்.",
+        "தாவர வகையை உறுதிப்படுத்தி, தெளிவான வெளிச்சத்தில் பாதிக்கப்பட்ட ஒரு இலையின் கூர்மையான படத்தை எடுத்து வேளாண் நிபுணரிடம் காட்டவும்."
+      ],
+      "prevention_monitoring": [
+        "Keep the plant under observation and avoid moving suspect planting material between fields until an expert confirms the cause.",
+        "The scanner has no validated out-of-distribution detector; an unsupported plant may still receive a high-scoring class."
+      ],
+      "prevention_monitoring_ta": [
+        "காரணம் உறுதிப்படும் வரை செடியைக் கண்காணித்து, சந்தேகமான நடவு பொருளை வயல்களுக்கு இடையில் எடுத்துச் செல்வதைத் தவிர்க்கவும்.",
+        "இந்த ஸ்கேனரில் சோதிக்கப்பட்ட வெளிவகை அடையாளமிடும் முறை இல்லை; ஆதரிக்கப்படாத தாவரத்திற்கும் அதிக மதிப்பெண் கொண்ட வகை தோன்றலாம்."
+      ],
+      "next_steps": "No treatment is selected from an uncertain image result. Contact TNAU or a KVK for field diagnosis.",
+      "source_title": "Tamil Nadu Agricultural University Agritech Portal",
+      "source_url": "https://agritech.tnau.ac.in/",
+      "source_publication_date": null,
+      "source_checked": "2026-10-26",
+      "chemical_recommendations": []
+    }
+  }
+}

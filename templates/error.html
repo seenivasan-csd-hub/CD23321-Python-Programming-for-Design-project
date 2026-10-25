@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Error {{ code }} | FarmIQ{% endblock %}
+{% block content %}
+<section class="panel narrow-panel">
+  <p class="eyebrow">REQUEST NOT COMPLETED</p>
+  <h1>{{ code }}</h1>
+  <p>{{ message }}</p>
+  <a class="button" href="{{ url_for('index') }}">Return to dashboard</a>
+</section>
+{% endblock %}
